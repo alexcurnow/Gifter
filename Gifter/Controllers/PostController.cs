@@ -2,6 +2,7 @@
 using Gifter.Data;
 using Gifter.Repositories;
 using Gifter.Models;
+using System;
 
 namespace Gifter.Controllers
 {
@@ -63,5 +64,12 @@ namespace Gifter.Controllers
             _postRepository.Delete(id);
             return NoContent();
         }
+
+        [HttpGet("hottest")]
+        public IActionResult Hottest(DateTime q)
+        {
+            return Ok(_postRepository.Hottest(q));
+        }
+
     }
 }
