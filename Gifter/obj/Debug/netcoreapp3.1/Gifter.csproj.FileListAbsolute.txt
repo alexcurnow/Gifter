@@ -149,3 +149,6 @@ C:\Users\Alexander Curnow\workspace\Gifter\Gifter\bin\Debug\netcoreapp3.1\runtim
 C:\Users\Alexander Curnow\workspace\Gifter\Gifter\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Alexander Curnow\workspace\Gifter\Gifter\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Alexander Curnow\workspace\Gifter\Gifter\obj\Debug\netcoreapp3.1\Gifter.csproj.CopyComplete
+C:\Users\Alexander Curnow\workspace\Gifter\Gifter\bin\Debug\netcoreapp3.1\client\package-lock.json
+C:\Users\Alexander Curnow\workspace\Gifter\Gifter\bin\Debug\netcoreapp3.1\client\package.json
+C:\Users\Alexander Curnow\workspace\Gifter\Gifter\bin\Debug\netcoreapp3.1\client\public\manifest.json

@@ -17,7 +17,10 @@ namespace Gifter.Repositories
 
         public List<Post> GetAll()
         {
+            _context.Comment.Include(c => c.Message);
+
             return _context.Post
+                .Include(p => p.Comments)
                 .Include(p => p.UserProfile).ToList();
         }
 
@@ -28,7 +31,9 @@ namespace Gifter.Repositories
 
         public List<Post> GetByUserProfileId(int id)
         {
+
             return _context.Post.Include(p => p.UserProfile)
+                            .Include(c => c.Comments)
                             .Where(p => p.UserProfileId == id)
                             .OrderBy(p => p.Title)
                             .ToList();
@@ -55,8 +60,11 @@ namespace Gifter.Repositories
 
         public List<Post> Search(string criterion, bool sortDescending)
         {
+            _context.Comment.Include(c => c.Message);
+
             var query = _context.Post
                                 .Include(p => p.UserProfile)
+                                .Include(p => p.Comments)
                                 .Where(p => p.Title.Contains(criterion) || p.Caption.Contains(criterion));
 
             return sortDescending
