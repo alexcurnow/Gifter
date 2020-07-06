@@ -2,6 +2,7 @@ import React, { useContext, useRef } from "react";
 import { PostContext } from "../providers/PostProvider";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import "../styles/PostForm.css";
+import { useHistory } from "react-router-dom";
 
 export const NewPostForm = (props) => {
   const { addPost } = useContext(PostContext);
@@ -11,13 +12,17 @@ export const NewPostForm = (props) => {
   const caption = useRef();
   const userProfileId = useRef();
 
+  const history = useHistory();
+
   const constructNewPost = () => {
-    addPost({
+    return addPost({
       title: title.current.value,
       imageUrl: imageUrl.current.value,
       caption: caption.current.value,
       dateCreated: "2020-06-22T00:00:00",
       userProfileId: parseInt(userProfileId.current.value),
+    }).then(() => {
+      history.push("/");
     });
   };
 
