@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { NewPostForm } from "./PostForm";
 import { SearchPosts } from "./SearchPosts";
 import PostDetails from "./PostDetails";
+import { UserPosts } from "./UserPosts";
 
 const ApplicationViews = () => {
   return (
@@ -17,6 +18,10 @@ const ApplicationViews = () => {
 
       <Route path="/posts/:id">
         <PostDetails />
+      </Route>
+
+      <Route path="/users/:id">
+        <UserPosts />
       </Route>
     </Switch>
   );
