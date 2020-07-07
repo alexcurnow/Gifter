@@ -15,11 +15,11 @@ export const SearchPosts = (props) => {
   };
 
   useEffect(() => {
-    getAllPosts();
-  }, []);
-
-  useEffect(() => {
-    searchPosts(terms);
+    if (!terms) {
+      getAllPosts();
+    } else {
+      searchPosts(terms);
+    }
   }, [terms]);
 
   return (
