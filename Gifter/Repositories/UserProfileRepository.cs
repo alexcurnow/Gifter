@@ -15,6 +15,11 @@ namespace Gifter.Repositories
             _context = context;
         }
 
+        public UserProfile GetByFirebaseUserId(string firebaseUserId)
+        {
+            return _context.UserProfile
+                .FirstOrDefault(up => up.FirebaseUserId == firebaseUserId);
+        }
         public List<UserProfile> GetAll()
         {
             return _context.UserProfile.ToList();
