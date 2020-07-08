@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserProfileContext } from "../providers/UserProfileProvider";
 
 const Header = () => {
+  const { isLoggedIn, logout } = useContext(UserProfileContext);
+
   return (
     <nav className="navbar navbar-expand navbar-dark bg-info">
       <Link to="/" className="navbar-brand">
@@ -18,6 +21,13 @@ const Header = () => {
             New Post
           </Link>
         </li>
+        {isLoggedIn && (
+          <li className="nav-item">
+            <Link to="/login" className="nav-link" onClick={logout}>
+              Logout
+            </Link>
+          </li>
+        )}
       </ul>
     </nav>
   );

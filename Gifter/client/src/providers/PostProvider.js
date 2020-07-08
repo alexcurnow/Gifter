@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, createContext } from "react";
 import { UserProfileContext } from "./UserProfileProvider";
 
 export const PostContext = React.createContext();
@@ -46,8 +46,8 @@ export const PostProvider = (props) => {
       })
     );
 
-  const searchPosts = (searchTerm) =>
-    getToken((token) =>
+  const searchPosts = (searchTerm) => {
+    return getToken().then((token) =>
       fetch(`/api/post/search?q=${searchTerm}`, {
         method: "GET",
         headers: {
@@ -57,9 +57,10 @@ export const PostProvider = (props) => {
         .then((res) => res.json())
         .then(setPosts)
     );
+  };
 
   const getPost = (id) =>
-    getToken((token) =>
+    getToken().then((token) =>
       fetch(`/api/post/${id}`, {
         method: "GET",
         headers: {
