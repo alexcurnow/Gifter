@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Gifter.Data;
 using Gifter.Models;
+using System;
 
 namespace Gifter.Repositories
 {
@@ -83,6 +84,14 @@ namespace Gifter.Repositories
                         .Where(p => p.DateCreated >= date);
 
             return query.ToList();
+        }
+
+        public List<Post> GetMostRecent(int numResults)
+        {
+            return _context.Post
+                           .Take(numResults)
+                           .OrderByDescending(p => p.DateCreated)
+                           .ToList();
         }
     }
 }

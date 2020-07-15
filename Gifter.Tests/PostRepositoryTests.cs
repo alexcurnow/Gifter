@@ -52,7 +52,7 @@ namespace Gifter.Tests
             var repo = new PostRepository(_context);
             var results = repo.Search("", true);
 
-            Assert.Equal(3, results.Count);
+            Assert.Equal(4, results.Count);
             Assert.Equal(mostRecentTitle, results[0].Title);
         }
 
@@ -63,8 +63,8 @@ namespace Gifter.Tests
             var repo = new PostRepository(_context);
             var results = repo.Search("", false);
 
-            Assert.Equal(3, results.Count);
-            Assert.Equal(mostRecentTitle, results[2].Title);
+            Assert.Equal(4, results.Count);
+            Assert.Equal(mostRecentTitle, results[3].Title);
         }
 
         [Fact]
@@ -111,6 +111,37 @@ namespace Gifter.Tests
 
             Assert.NotNull(result);
             Assert.Empty(result);
+
+        }
+
+        [Fact]
+        public void Most_Recent_Returns_Result_Amt_Equal_To_Arg_Passed_In()
+        {
+            var repo = new PostRepository(_context);
+            var result = repo.GetMostRecent(100);
+
+            Assert.Equal(4, result.Count);
+
+        }
+
+        [Fact]
+        public void Most_Recent_Returns_Empty_List_If_No_Arg_Passed_In()
+        {
+            var repo = new PostRepository(_context);
+            var result = repo.GetMostRecent(0);
+
+            Assert.NotNull(result);
+            Assert.Empty(result);
+
+        }
+
+        [Fact]
+        public void Most_Recent_Always_Returns_Most_Recent_Post_As_First_Result()
+        {
+            var repo = new PostRepository(_context);
+            var result = repo.GetMostRecent(4);
+
+            Assert.Equal("A Rug", result[3].Title);
 
         }
 
@@ -185,7 +216,7 @@ namespace Gifter.Tests
                 ImageUrl = "http://foo.gif",
                 UserProfileId = 3,
                 UserProfile = user3,
-                DateCreated = DateTime.Now - TimeSpan.FromDays(12),
+                DateCreated = DateTime.Now - TimeSpan.FromDays(13),
             };
 
             var comment1 = new Comment()
